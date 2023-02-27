@@ -1,17 +1,24 @@
 """
 Dependencies
 pip install -U Flask
+pip install -U flask_cors
+
 
 Test
 http://127.0.0.1:5000/api/items
 """
 
 from flask import Flask, jsonify, request
+from flask_cors.extension import CORS
 
 app = Flask(__name__)
 
 # Define a list of items for our API to manage
 items = ["item 1", "item 2"]
+
+# Define CORS
+CORS(app, origins=["http://localhost:6006"]) # Change to the port you need
+app.config['CORS HEADERS'] = 'Content-Type'
 
 # Define a GET endpoint that returns all items
 @app.route('/api/items', methods=['GET'])
@@ -32,5 +39,3 @@ def create_item():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-
